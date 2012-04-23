@@ -10,7 +10,7 @@ Tools for planning meeting venues. There are two tools here:
   meetings
 
 
-### `compute-cost.py`
+### Computing Venue Costs
 
 `compute-cost.py` needs three inputs:
 
@@ -28,8 +28,22 @@ venue for each attendee. stdout also contains some simple summary statistics
 for each venue.
 
 
+### Planning Meetings
 
+`plan-rotation.py` is designed to plan a "fair" (even) rotation of
+meetings between a set of regions (currently EU (Europe), WC (West
+Coast US) and EC (East Coast US)). It takes a single input, the list
+of planned meetings in order. For each meeting without a location, it
+assigns a region attempting to pick the least used region. Ties
+are broken by the least-recently visited region.
 
+The input file consists of pairs of meeting name and region 
+specified on a single line, like:
 
+IETF84 WC
+INT84.5 XX
 
+Any meetings with region XX is filled in with the currently "next" 
+region based on previous meetings. Any other regions are stored
+but basically ignored.
 

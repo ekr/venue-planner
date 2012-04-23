@@ -2,6 +2,7 @@
 import sys
 
 MEETINGS = { 'NONE': 999}
+MEETING_LIST = []
 
 VENUES = ["EU", "WC", "EC"]
 
@@ -23,10 +24,20 @@ def pick_venue():
         elif MEETINGS[best[0]] == count:
             best.append(v)
 
-    print "Best venues: ",
-    print best
-    
-    return best
+#    print "Best venues: ",
+#    print best
+#    print "History is ",
+#    print MEETING_LIST
+
+    # Tie breaker: pick least recently used venue
+    for m in MEETING_LIST:
+        if len(best) == 1:
+            return best[0]
+        if m in best:
+ #           print "Removing %s"%m
+            best.remove(m)
+        
+    die("Internal error")
                 
 f = open(sys.argv[1])
 for l in f:
@@ -40,12 +51,13 @@ for l in f:
     if a[1] != "XX":
         this_meeting = a[1]
     else:
-        order = pick_venue()
-        this_meeting = order[0]
-        print "Selecting %s --> %s"%(a[0], order[0])
+        best = pick_venue()
+        this_meeting = best
+        print "Selecting %s --> %s"%(a[0], best)
         
     if not this_meeting in MEETINGS:
         MEETINGS[this_meeting] = 0
     MEETINGS[this_meeting] +=1
+    MEETING_LIST.insert(0, this_meeting)
     
-    print a[0], MEETINGS
+#    print a[0], MEETINGS
