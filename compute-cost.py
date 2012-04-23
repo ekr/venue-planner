@@ -5,7 +5,7 @@ import math
 from optparse import OptionParser
 
 
-HOME_AIRPORTS_FILE = "home-airports"
+HOME_AIRPORTS_FILE = "home-airports.txt"
 DURATIONS_FILE = "durations.txt"
 
 HOME_AIRPORTS = {}
@@ -128,7 +128,7 @@ def read_durations():
 
 parser = OptionParser()
 parser.add_option('-a', '--attendees', dest='attendees',
-                  default='doodle.txt')
+                  default='doodle-respondees.txt')
 parser.add_option('-o', '--output', dest='output',
                   default='output.txt')
 parser.add_option('-O', '--hist', dest='hist',
