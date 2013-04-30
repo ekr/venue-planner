@@ -23,12 +23,7 @@ def pick_venue():
             best = [v]
         elif MEETINGS[best[0]] == count:
             best.append(v)
-
-#    print "Best venues: ",
-#    print best
-#    print "History is ",
-#    print MEETING_LIST
-
+ 
     # Tie breaker: pick least recently used venue
     for m in MEETING_LIST:
         if len(best) == 1:
@@ -60,4 +55,4 @@ for l in f:
     MEETINGS[this_meeting] +=1
     MEETING_LIST.insert(0, this_meeting)
     
-#    print a[0], MEETINGS
+    print a[0], MEETINGS
